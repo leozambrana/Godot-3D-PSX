@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://bbv6w5t08o7f5"]
+
+[ext_resource type="Texture2D" uid="uid://dual8pgweerbq" path="res://assets/world/texture/696.jpg" id="1_m1hal"]
+[ext_resource type="PackedScene" uid="uid://c3hep1l87y4p5" path="res://player/Player.tscn" id="1_sd8sc"]
+[ext_resource type="PackedScene" uid="uid://cslelliu47d47" path="res://models/objects/bush_01.tscn" id="2_nscri"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7uef4"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_gqjj6"]
+sky_material = SubResource("ProceduralSkyMaterial_7uef4")
+
+[sub_resource type="Environment" id="Environment_0ppt2"]
+background_mode = 2
+sky = SubResource("Sky_gqjj6")
+tonemap_mode = 2
+glow_enabled = true
+volumetric_fog_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tx2qp"]
+albedo_texture = ExtResource("1_m1hal")
+uv1_triplanar = true
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0ppt2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_tx2qp")
+
+[node name="bush01" parent="CSGCombiner3D" instance=ExtResource("2_nscri")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, -5.91024)
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_sd8sc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10125, -2.03452)

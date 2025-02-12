@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3hep1l87y4p5"]
+
+[ext_resource type="Script" path="res://player/player_movement.gd" id="1_a0q64"]
+[ext_resource type="Script" path="res://player/camera_movement.gd" id="2_frfe4"]
+[ext_resource type="PackedScene" uid="uid://cx3llk72w8a7h" path="res://objects/flashlight/flashlight.tscn" id="2_rn2ph"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qvrnk"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_a0q64")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_qvrnk")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="CameraPlayer3D" type="Camera3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66869, 0)
+script = ExtResource("2_frfe4")
+
+[node name="Flashlight" parent="Node3D/CameraPlayer3D" instance=ExtResource("2_rn2ph")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.292349, -0.201317, -0.264556)

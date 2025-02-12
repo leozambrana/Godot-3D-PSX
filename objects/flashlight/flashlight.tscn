@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cx3llk72w8a7h"]
+
+[ext_resource type="Script" path="res://objects/flashlight/flashlight.gd" id="1_4lc5h"]
+[ext_resource type="PackedScene" uid="uid://bvywfktdhjp2d" path="res://models/objects/flashlight.glb" id="2_aeya3"]
+
+[node name="Flashlight" type="Node3D"]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0766502)
+spot_range = 15.0
+spot_angle = 25.0
+script = ExtResource("1_4lc5h")
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("2_aeya3")]
